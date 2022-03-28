@@ -33,7 +33,7 @@ class Monitor():
 
     def wants_enter(self, direction):
         self.mutex.acquire()
-        if direction == NORTH:
+        if direction == SOUTH:
             self.number_north_waiting.value += 1
             self.no_south.wait_for(self.are_no_south)
             self.number_north_waiting.value -= 1
@@ -55,7 +55,7 @@ class Monitor():
 
     def leaves_tunnel(self, direction):
         self.mutex.acquire()
-        if direction == NORTH:
+        if direction == SOUTH:
                     self.number_north.value -= 1
                     self.turn.value = 1
                     if self.number_north.value == 0:
